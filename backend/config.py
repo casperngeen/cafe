@@ -1,18 +1,23 @@
 import mysql.connector
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+# Access environment variables
+db_host = os.getenv('MYSQL_HOST')
+db_user = os.getenv('MYSQL_USER')
+db_password = os.getenv('MYSQL_PASSWORD')
+db = os.getenv('MYSQL_DATABASE')
 
 class DbConfig:
-    MYSQL_HOST = 'localhost'
-    MYSQL_USER = 'root'
-    MYSQL_PASSWORD = 'yourpassword'
-    MYSQL_DB = 'cafesystem'
-
     # Establishing MySQL connection
     @staticmethod
     def get_db_connection():
         connection = mysql.connector.connect(
-            host=DbConfig.MYSQL_HOST,
-            user=DbConfig.MYSQL_USER,
-            password=DbConfig.MYSQL_PASSWORD,
-            database=DbConfig.MYSQL_DB
+            host=db_host,
+            user=db_user,
+            password=db_password,
+            database=db,
         )
         return connection
