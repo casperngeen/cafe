@@ -17,11 +17,11 @@ CREATE TABLE Employee (
     phone_number CHAR(8) NOT NULL,
     gender ENUM('Male', 'Female') NOT NULL,
     start_date DATE,  -- The date the employee started working at the cafe
-    CHECK (email_address REGEXP '^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$'),
-    CHECK (phone_number REGEXP '^[89][0-9]{7}$'),  -- Ensure phone starts with 8 or 9 and is 8 digits
     cafe_id CHAR(36),  -- Foreign key to the Cafe table
-    FOREIGN KEY (cafe_id) REFERENCES Cafe(id),  -- Ensure the cafe exists
-    UNIQUE (id, cafe_id)  -- Prevents assigning the same employee to multiple cafes
+    FOREIGN KEY (cafe_id) REFERENCES Cafe(id) ON DELETE CASCADE,  -- Ensure the cafe exists & deletes upon deletion of cafe
+    UNIQUE (id, cafe_id),  -- Prevents assigning the same employee to multiple cafes
+    CHECK (email_address REGEXP '^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$'),
+    CHECK (phone_number REGEXP '^[89][0-9]{7}$')  -- Ensure phone starts with 8 or 9 and is 8 digits
 );
 
 DELIMITER //
