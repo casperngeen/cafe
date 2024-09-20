@@ -39,7 +39,7 @@ class EmployeeModel:
     def add_employee(cls, data):
         query = '''
             INSERT INTO Employee (name, email_address, phone_number, gender, start_date, cafe_id)
-            VALUES(%s, %s, %s, %s, %s, (SELECT id FROM Cafe WHERE name = %s));
+            VALUES(%s, %s, %s, %s, %s, (SELECT id FROM Cafe WHERE name = %s))
         '''
         
         with DbConfig.get_db_connection() as db_connection:
