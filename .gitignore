@@ -1,3 +1,5 @@
 backend/venv
 bakcend/__pycache__/
 backend/*.pyc
+.vscode
+backend/.env
